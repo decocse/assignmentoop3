@@ -1,0 +1,92 @@
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+class node{
+    public:
+	node*next;
+    int data;
+   
+    
+};
+//_____________________________________1____________________________________________________________
+void add(int acc,node*head,int balance[])
+{
+    
+    head=new node();
+    node*curr;
+    curr=new node();
+    curr=head;
+    node*temp;
+    temp=new node();
+    if(head==NULL){
+    curr->data=acc;
+    curr->next=temp;
+    curr=temp;
+    }
+    else{
+        curr->data=acc;
+        curr->next=temp;
+        curr=temp;
+    }
+    }
+    //___________________________________2________________________________________________
+    void display(node*head,int balance[])
+    {
+        head=new node();
+        node*curr;
+        curr=new node();
+        curr=head;
+        while(curr!=NULL)
+        {
+            cout<<curr->data<<"\n";
+            cout<<balance[curr->data]<<"\n";
+        }
+
+    }
+    //__________________________________3___________________________________________
+    void search(int acc,node*head)
+    {
+            head=new node();
+            node*curr;
+            curr=new node();
+            curr=head;
+            while(curr!=NULL)
+            {
+                if(curr->data==acc)
+                {
+                    cout<<"account found\n";
+                    break;
+                }
+                curr=curr->next;
+            }
+            cout<<"no account existed\n";
+    }
+    int main()
+    {
+        int acc,balance[10000];
+        bool flag=true;
+        int ch;
+        while(1){
+        cout<<"enter choice\nenter 0 to exit\n";
+        cin>>ch;
+        switch(ch)
+        {
+            case 1: cout<<"enter acc no.\n";
+            cin>>acc;
+            cout<<"enter balance\n";
+            cin>>balance[acc];
+            node*head;
+            head=new node();
+            if(flag==true)
+            {
+                head=NULL;
+            }
+            flag=false;
+            add(acc,head,balance);
+            case 0: cout<<"exitint the code\n";
+            exit(0);
+        }
+        }
+    }
+
+
