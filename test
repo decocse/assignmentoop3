@@ -1,0 +1,148 @@
+#include<iostream>
+using namespace std;
+
+class student{
+	public:
+	int *roll;
+	int size;
+	int*st;
+	char*name;
+	//public:
+student(int s=0,int a=0,char n='\0')
+{
+size=s;
+st=new int [size];
+name=new char[size+1];
+name[size]='\0';
+for(int i=0;i<size;i++)
+{
+	st[i]=a;
+	name[i]=n;
+}
+}
+student(const student&s)
+{
+	size=s.size;
+	st=new int[size];
+	name =new char[size+1];
+	name[size]='\0';
+	for(int i=0;i<size;i++)
+	{
+	 st[i]=s.st[i];
+	 name[i]=s.name[i];
+	}
+}
+};
+int noofstu=0;
+int cseno=0,etceno=0,elecno=0;
+class subject:public student
+{
+	public:
+	int *a;
+	int subcode;
+	char *subname;
+	subject(int arr=0,int s=0,char sn='\0');
+	subject(const subject&cw)
+	{
+		if(size!=NULL)
+		{
+			delete subname;
+		}
+		if(size==0)
+		{
+			subname=NULL;
+		}
+		else{
+			size=cw.size;
+			a=new int[size];
+			subname=new char[size+1];
+			subname[size]='\0';
+			for(int i=0;i<size;i++)
+			{
+	 			a[i]=cw.a[i];
+	 			subname[i]=cw.subname[i];
+			}
+		}
+	}
+	
+	void studentdetails()
+	{
+		subject s;
+		int roll,ch;
+	
+		int c=1;
+		cout<<"enter your choice\n1 for cse\n2 for etce\n3 for IT\n4 for electrical\n";
+		cin>>ch;
+		switch(ch)
+		{
+			case 1:{
+				//int cseno=0;
+				 s.subcode=1*rand();
+			cout<<"CSE DEPARTMENT\n";
+				cin>>s.name[cseno++];
+				cin>>s.roll[cseno++];
+			
+			break;
+			}
+			case 2:{
+				//int etceno=0;
+				cout<<"ETCE DEPARTMENT\n";
+				cin>>s.name[etceno++];
+				cin>>s.roll[etceno++];
+			
+			
+			break;
+			}
+			case 3:{
+				//int elecno=0;
+				cout<<"ELECTRICAL DEPARTMENT\n";
+				cin>>s.name[elecno++];
+				cin>>s.roll[elecno++];
+			
+			break;
+			}
+		}
+		noofstu++;
+		
+	}
+	void get_sub()
+	{
+		char **choose;
+		cout<<"choose any 5 five subject\n";
+		for(int i=0;i<5;i++)
+		{
+			cin>>choose[i];
+		}
+	}
+	
+	void countofstudent()
+	{
+		cout<<"number of student in CSE: "<<cseno<<"\n";
+		cout<<"number of student in ELECTRICAL: "<<elecno<<"\n";
+		cout<<"number of student in ETCE: "<<etceno<<"\n";
+		cout<<"total number of student in FET: "<<noofstu<<"\n";
+	}
+	friend void display();
+};
+
+subject s[100000];
+void display()
+{
+	int i;
+int j;
+j=0;
+    cout<<"\n\t\tJADAVPUR UNIVERSITY STUDENT DETAILS LIST\n\n";
+	cout<<"SL NO.\t\tName\t\tRoll Number\t\tDepartment\n";
+	cout<<"\n----------------------------------------------------------------------------\n";
+	for(i=0;i<noofstu;i++)
+	{
+		j++;
+		cout<<j<<".\t"<<s[i].name<<"\t\t"<<s[i].roll<<"\t\t"<<endl;	
+	}
+	cout<<"\n----------------------------------------------------------------------------\n";
+}
+	int main()
+	{
+	
+		
+	}
