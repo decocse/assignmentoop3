@@ -37,7 +37,14 @@ int subcount2=count2;
 array arr[1000];
 array2 arr2[1000];
 
-
+void show1st()
+{
+    for(int i=0;i<count;i++)
+    {
+        cout<<arrs[i]<<" ";
+    }
+    cout<<"\n\n";
+}
 
 void gettingmax()
 {
@@ -80,10 +87,12 @@ void gettingmax2()
 void adding()
 {
     cout<<"ADDING TWO ARRAY ELEMENTS\n";
-    for(int l=0;l<subcount;l++)
+    for(int l=0;l<count;l++)
     {
-        arr[l].x+=arr[l].x+arr2[l].y;
+        arrs[l]+=arrs2[l];
     }
+    
+    cout<<"\n";
     cout<<"DONE AND THE RESULT STORED IN FIRST ARRAY\n";
 }
 int main()
@@ -132,7 +141,12 @@ int main()
             case 5:
             gettingmax2();
             break;
-
+            case 6:
+            adding();
+            break;
+            case 7:
+            show1st();
+            break;
         }
     }
 }
