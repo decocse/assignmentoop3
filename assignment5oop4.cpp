@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
-int bat=0,ball=0,all=0;
+int bat=0,ball=0,all=0,ballallr=0;
 class cricketer{
     public :
     string name;
@@ -27,6 +27,10 @@ class batsman:cricketer{
         
     cout<<"NAME\t"<<name<<"\t"<<"DOB\t"<<dob<<"\t"<<"MATCHES PLAYED\t"<<matchespl<<"\t"<<"TOTAL RUNS SCORED\t"<<trs<<"\t"<<"AVERAGE SCORE\t"<<avscore<<"\n";
     }
+    void showallr()
+    {
+    cout<<"NAME\t"<<name<<"\t"<<"DOB\t"<<dob<<"\t"<<"MATCHES PLAYED\t"<<matchespl<<"\t"<<"TOTAL RUNS SCORED\t"<<trs<<"\t"<<"AVERAGE SCORE\t"<<avscore<<"\t";
+    }
 };
 class bowler:cricketer
 {
@@ -44,25 +48,34 @@ class bowler:cricketer
          cin>>economy;
         ball++;
      }
+     void getballallround()
+     {
+         cin>>wickets;
+         cin>>economy;
+         ballallr++;
+     }
      void showball()
     {
         
-    cout<<"NAME\t"<<name<<"\t"<<"DOB\t"<<dob<<"\t"<<"MATCHES PLAYED\t"<<matchespl<<"\t"<<"TOTAL RUNS SCORED\t"<<wickets<<"\t"<<"AVERAGE SCORE\t"<<economy<<"\n";
+    cout<<"NAME\t"<<name<<"\t"<<"DOB\t"<<dob<<"\t"<<"MATCHES PLAYED\t"<<matchespl<<"\t"<<"WICKETS\t"<<wickets<<"\t"<<"ECONOMY\t"<<economy<<"\n";
     }
-
+    void showballallr()
+    {
+        cout<<"WICKETS\t"<<wickets<<"\t"<<"ECONOMY\t"<<economy<<"\n";
+    }
 };
 class allrounder:batsman,bowler{
     public:
     void allroundd()
     {
      getbatdetails();
-     getbowlerdetails();
+     getballallround();
      all++;
     }
     void showallround()
     {
-        show();
-        showball();
+        showallr();
+        showballallr();
     }
 };
 batsman b[1000];
@@ -85,7 +98,7 @@ int main()
             break;
             case 1:
             cout<<"BATSMAN\n";
-            cout<<"ENTER PLAYER NAME\nPLAYER DOB\nMATHCHES PLAYED\nTOTAL RUN SCORED\nAVERAGE SCORE\n";
+            cout<<"ENTER PLAYER NAME\nPLAYER DOB IN dd/mm/yyyy format\nMATHCHES PLAYED\nTOTAL RUN SCORED\nAVERAGE SCORE\n";
             b[i].getbatdetails();
             i++;
             break;
@@ -98,7 +111,7 @@ int main()
             break;
             case 3:
             cout<<"BOWLER\n";
-            cout<<"ENTER PLAYER NAME\nPLAYER DOB\nMATHCHES PLAYED\nWICKETS\nECONOMY\n";
+            cout<<"ENTER PLAYER NAME\nPLAYER DOB IN dd/mm/yyyy format\nMATHCHES PLAYED\nWICKETS\nECONOMY\n";
             bll[k].getbowlerdetails();
             k++;
             break;
@@ -110,7 +123,7 @@ int main()
             }
             case 5:
             cout<<"ALL ROUNDER\n";
-            cout<<"ENTER PLAYER NAME\nPLAYER DOB\nMATHCHES PLAYED\nTOTAL RUN SCORED\nAVERAGE SCORE\nWICKETS\nECONOMY\n";
+            cout<<"ENTER PLAYER NAME\nPLAYER DOB IN dd/mm/yyyy format\nMATHCHES PLAYED\nTOTAL RUN SCORED\nAVERAGE SCORE\nWICKETS\nECONOMY\n";
             alr[m].allroundd();
             m++;
             break;
