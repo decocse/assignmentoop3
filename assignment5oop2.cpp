@@ -1,246 +1,295 @@
 #include<iostream>
-#include<stdlib.h>
 using namespace std;
-int Student=0;
-class student{
-public :
-
-
-string name;
-string email;
-    void taking_data()
-    {
-        cin.ignore();
-        cout<<"ENTER THE NAME AND EMAIL ID OF THE STUDENT\n\n";
-       getline(cin,name);
-        //cin.ignore();
-        getline(cin,email);
-        
-        cout<<"Data entered successfully\n";
-        Student++;
-    }
-    void display_studentdata()
-        {
-            for(int i=0;i<Student;i++)
-            {
-                cout<<"NAME :";
-                for(int j=i;j<name.size();j++)
-                {
-                cout<<name[j];
-                }
-                cout<<"\t"<<"EMAIL: ";
-                for(int j=i;j<email.size();j++)
-                {
-                    cout<<email[j];
-                }
-                cout<<"\n";
-            }
-        }
-    
-    
-};
-
-
-
+int bookcount=0;
+int arr[100000];
+int k=0;
 class book{
     public:
-int bookid;
-int sno;
-string title;
-string author;
-
-};
-class node{
-public:
-int data;
-int sno;
-string tie;
-string aname;
-node*next;
-node*head=NULL;
-
-
-//book storing________________________________
-
-void bookstore(int bkid,int sno,string tile,string authorname)
-{
-    
-    node*temp;
-    temp=new node();
-    temp->data=bkid;
-        temp->sno=sno;
-        temp->tie=tile;
-        temp->aname=authorname;
-        
-        temp->next=NULL;
-    if(head==NULL)
+    int id;
+    int serialno;
+    string title;
+    string author;
+   
+    int getserialno(){
+        return serialno;
+    }
+    void setbookdetails()
     {
-        
-        head=temp;
-        cout<<"data entered\n";
+        cout<<"ENTER THE BOOK ID\nSERIAL NUMBER\nTITLE\nAUTHOR\n";
+        cin>>id;
+        arr[k++]=id;
+        cin>>serialno;
+        cin.ignore();
+        getline(cin,title);
+        getline(cin,author);
+
     }
-    else{
-        node*temp2;
-        temp2=head;
-        while(temp2->next!=NULL)
-        {
-            temp2=temp2->next;
-        }
-        temp2->next=temp;
-        cout<<"OK entered\n";
-        
+    void show(){
+            cout<<"BOOK ID:"<<"\t"<<id<<"\t"<<"SERIAL NUMBER\t"<<serialno<<"\t"<<"TITLE\t"<<title<<"\t"<<"AUTHOR\t"<<author<<"\n";
     }
-}
-void display()
-{
-node*temp=head;
-//temp=new node();
-while(temp!=NULL)
-{
-    cout<<temp->data<<" "<<temp->sno<<" "<<temp->tie<<" "<<temp->aname<<"\n";
-    temp=temp->next;
-}
-}
-void bookissue(int bkid)
-{
-    node*temp=head;
-    node*prev=NULL;
-  //  temp=new node();
-    prev =new node();
-    if(head->data==bkid)
-    {
-        head=temp->next;
-        delete temp;
-        cout<<"book avaliable\n";
-    }
-    
-    else{
-    while(temp!=NULL)
-    {
-        if(temp->data==bkid)
-        {
-            cout<<"book available and issued\n";
-           prev->next=temp->next;
-            delete temp;
-        }
-        prev=temp;
-        temp=temp->next;
-        return;
-    }
-    cout<<"book not avaliable\n";
-    }
-}
-void bookreturn(int bkid,int srno,string tile,string auname)
-{
-    node*temp=head;
-    node*temp2;
-    temp2=new node;
-    while(temp->next!=NULL)
-    {
-        temp=temp->next;
-    }
-    //temp2=temp->next;
-    temp2->data=bkid;
-    temp2->sno=srno;
-    temp2->tie=tile;
-    temp2->aname=auname;
-    temp2->next=NULL;
-    temp->next=temp2;
-    cout<<"BOOK ADDED SUCCESSFULLY\n\n";
-}
 };
 
 
-     
-
-//main function_____________________________________________________________________
-//__________________________________________________________________________________
+class member{
+    public:
+    string name;
+    string mail;
+    void setdetails()
+    {
+        cout<<"\t\tENTER NAME AND EMAIL\n";
+        cin.ignore();
+        getline(cin,name);
+        getline(cin,mail);
+    }
+    void showst()
+    {
+        cout<<"NAME:\t"<<name<<"\t"<<"EMAIL ID\t"<<mail<<"\n";
+    }
+};
+class student:member
+{
+    public:
+    void studentdata()
+    {
+        setdetails();
+    }
+    void showdatastudent()
+    {
+        showst();
+    }
+};
+class faculty:member{
+    public:
+    void facultydetails()
+    {
+        setdetails();
+    }
+     void showdatafaculty()
+    {
+        showst();
+    }
+};
+book b[10000];
+book bp2[1000];
+student stu[1000];
+faculty fu[1000];
+int de=0; 
+int fcou=0;
+class bookfunc:book
+{
+    public:
+    
+    void addbook()
+    {
+        setbookdetails();
+       
+        bookcount++;
+    }
+    
+    // void removename()
+    // {
+    //     de--;
+    // }
+    void showbook()
+    {
+        show();
+    }
+    
+    bool checkbook(int b)
+    {
+        for(int i=0;i<bookcount;i++)
+        {
+            if(arr[k]==b)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+};
+student s[1000];
+faculty f[1000];
+student sp;
+bookfunc bfunc[100000];
+bookfunc bat;
+int n=0,fac=0;
+void arrange(int i)
+{
+    
+    int temp2=arr[i];
+     bat=bfunc[i];
+     sp=s[i];
+                  while(i<bookcount-1)
+                  {
+                      bfunc[i]=bfunc[i+1];
+                      arr[i]=arr[i+1];
+                    s[i]=s[i+1];
+                      i++;
+                  }
+                  bfunc[i]=bat;
+                  arr[i]=temp2;
+                  
+                  //de--;
+                bookcount--;
+                k--;
+                
+}
+void removebook()
+{
+    int i;
+         bool flag =0;
+         int ide;
+         cout<<"ENTER BOOK ID\n";
+         cin>>ide;
+         for( i=0;i<bookcount;i++)
+         {
+             if(arr[i]==ide)
+             {
+                 cout<<"BOOK REMOVED\n";
+                 arrange(i);
+                 return;
+            }
+         }
+         cout<<"BOOK NOT AVAILABLE\n";
+}
+void issuebook()
+{
+    int id,flag=0,flag2=0;
+    string memid;
+    cout<<"ENTER MEMBER ID S FOR STUDENT AND T FOR FACULTY\n";
+    cin.ignore();
+    getline(cin,memid);
+    if(memid=="S"||memid=="s"){
+    cout<<"ENTER THE BOOK ID TO ISSUED FOR STUDENT\n";
+    cin>>id;
+    if(n<2){
+    for(int i=0;i<bookcount;i++)
+    {
+        if(arr[i]==id)
+        {
+            cout<<"BOOK AVAILABLE AND ISSUED\n";
+          
+        
+            stu[de++].studentdata();
+        
+        
+        
+            removebook();
+            flag=1;
+            n++;
+        }
+    }
+    if(flag==0){
+    cout<<"BOOK NOT AVALIABLE\n";
+    }
+    }
+    else{
+        cout<<"YOU HAVE REACHED YOUR LIMIT\nRETURN BOOK FIRST\n";
+    }
+    }
+    if(memid=="T"||memid=="t")
+    {
+         cout<<"ENTER THE BOOK ID TO ISSUED FOR TEACHERS\n";
+    cin>>id;
+    if(fac<10){
+    for(int i=0;i<bookcount;i++)
+    {
+        if(arr[i]==id)
+        {
+            cout<<"BOOK AVAILABLE AND ISSUED\n";
+             
+            fu[fcou++].facultydetails();
+        
+        
+            removebook();
+            flag2=1;
+            fac++;
+            flag2=0;
+        }
+    }
+    if(flag2==0){
+    cout<<"BOOK NOT AVALIABLE\n";
+    }
+    }
+    else{
+        cout<<"YOU HAVE REACHED YOUR LIMIT\nRETURN BOOK FIRST\n";
+    }
+    }
+}
+void returnboook()
+{
+    cout<<"ENTER MEMBER ID S FOR STUDENT AND T FOR FACULTY\n";
+    string m;
+    cin.ignore();
+    getline(cin,m);
+    if(m=="s"||m=="S")
+    {
+    int i=0;
+    bfunc[i++].addbook();
+    cout<<"BOOK ADDED SUCCESSFULLY\n";
+    n--;
+    }
+    else if(m=="t"||m=="T")
+    {
+        int i=0;
+    bfunc[i++].addbook();
+    cout<<"BOOK ADDED SUCCESSFULLY\n";
+        fac--;
+    }
+}
 
 int main()
 {
-    node s;
-    student su;
-    int j=0;
-    int i=0;
-    //node*head=NULL;
-    //head=new node();
-    cout<<"WELCOME TO THE LIBRARY\n\n";
-    cout<<"**********************\n\n";
-while(1){
-    static int n=0;
-    static int facmem=0;
-    
-    cout<<"ENTER YOUR CHOICE\n\n";
-    int ch;
-    cin>>ch;
-    switch(ch)
+    int l=0;
+    cout<<"WELCOME TO MY LIBRARY\n";
+    cout<<"*********************\n\n";
+    while(1)
     {
-        case 0: cout<<"Thank you\n";
-        cout<<"\n\n\n\n";
-        exit(0);
-        break;
-        
-        
-        case 2: 
-        if(n>0){
-            cout<<"DISPLAYING THE ELEMENTS OF THE LIBRARY :\n";
-            s.display();
-        }
-        else{
-            cout<<"library is empty\n";
-        }
-        break;
-        case 3: cout<<"enter bookid to be issued\n";
-        //int n=0;
-        int bkidno;
-        if(n<=3){
-        cin>>bkidno;
-        n++;
-        s.bookissue(bkidno);
-        }
-        if(n>3)
+        cout<<"ENTER YOUR CHOICE\n";
+        int ch;
+        cin>>ch;
+        switch(ch)
         {
-            cout<<"you have reached your limit\nreturn your 3 books first\n";
-        }
-        break;
-        case 4: cout<<"enter book id   serial number    title    author name to be added\n\n";
-        if(n>=0){
-        node*hea;
-        hea=new node();
-        cin>>hea->data>>hea->sno>>hea->tie>>hea->aname;
-        s.bookreturn(hea->data,hea->sno,hea->tie,hea->aname);
-        n--;
-        }
-        if(n<0)
-        {
-            cout<<"first issue a book\n";
-        }
-        break;
-        case 5:
-            cout<<"TAKING DATA OF STUDENTS\n\n";
-            su.taking_data();
+            case 0:
+            cout<<"THANK YOU\n\n";
+            exit(0);
             break;
-
-
-        case 6: 
-        cout<<"DISPLAYING THE NAME AND EMAIL OF STUDENT WHO HAVE ISSUED BOOKS\n";
-            su.display_studentdata();
-        break;
-
-        case 1:cout<<"\n ADD A BOOK TO THIS LIBRARY\n";
-        cout<<"___________________________________________________\n";
-        cout<<"***************************************************\n";
-        node*head=new node();
-        int bkid,sno;
-        string tile;string authorname;
-        tile=new char[100];
-        authorname=new char[100];
-        cout<<"enter book id  serialno.  title  and  author name respectively\n";
-        cin>>head->data>>head->sno;
-        cin>>head->aname>>head->tie;
-        s.bookstore(head->data,head->sno,head->aname,head->tie);
-        break;
-        
+            case 1:
+            cout<<"ADD BOOK\n";
+            bfunc[l++].addbook();
+            break;
+            case 2:
+             removebook();
+             //removename();
+             break;
+             case 3:
+               
+                for(int i=0;i<bookcount;i++)
+                {
+                    bfunc[i].showbook();
+                }
+                break;
+                case 4:
+                cout<<"DISPLAYING ALL THE STUDENTS WHO HAVE ISSUED BOOKS \n\n";
+                 for(int i=0;i<de;i++)
+                {
+                    stu[i].showdatastudent();
+                }
+                break;
+                case 5:
+                cout<<"DISPLAYING ALL THE FACULTIES WHO HAVE ISSUED BOOKS \n\n";
+                 for(int i=0;i<fcou;i++)
+                {
+                    fu[i].showdatafaculty();
+                }
+                break;
+                case 6:
+                returnboook();
+                break;
+                case 7:
+                issuebook();
+                break;
+        }
     }
-}
 }
