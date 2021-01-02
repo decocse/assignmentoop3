@@ -93,21 +93,19 @@ class bookfunc:book
     void showbook()
     {
         show();
-    }
-    
-    bool checkbook(int b)
+    } 
+};
+ bool checkbook(int b)
     {
         for(int i=0;i<bookcount;i++)
         {
-            if(arr[k]==b)
+            if(arr[i]==b)
             {
                 return true;
             }
         }
         return false;
     }
-    
-};
 student s[1000];
 faculty f[1000];
 student sp;
@@ -247,6 +245,13 @@ int main()
     while(1)
     {
         cout<<"ENTER YOUR CHOICE\n";
+        cout<<"1. ADD BOOK TO THE LIBRARY\n";
+        cout<<"2. REMOVE BOOK FROM LIBRARY\n";
+        cout<<"3. SHOW ALL BOOKS\n";
+        cout<<"4. ALL THE STUDENT WHO HAVE ISSUED BOOKS\n";
+        cout<<"5. ALL THE FACULTIES WHO HAVE ISSUED BOOKS\n";
+        cout<<"6. RETURN BOOK\n";
+        cout<<"7. ISSUE A BOOK\n";
         int ch;
         cin>>ch;
         switch(ch)
@@ -257,7 +262,15 @@ int main()
             break;
             case 1:
             cout<<"ADD BOOK\n";
-            bfunc[l++].addbook();
+            cout<<"********\n\n";
+            cout<<"ENTER THE BOOK ID FOR CHECKING UNIQUENESS\n";
+            int no;
+            cin>>no;
+            if(!checkbook(no)){
+            bfunc[l++].addbook();}
+            else{
+                cout<<"BOOK ID SHOULD BE UNIQUE\n";
+            }
             break;
             case 2:
              removebook();
