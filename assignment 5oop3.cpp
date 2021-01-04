@@ -1,6 +1,10 @@
 #include<iostream>
 int tempcount=0;
 int permcount=0;
+int temparr[1000];
+int permarr[10000];
+int itm=0;
+int ipm=0;
 using namespace std;
 class emplist{
     public:
@@ -14,6 +18,7 @@ class tempemp:public emplist{//using inheritence*****************
     void get()
     {
         cin>>emid;
+        //temparr[itm++]=emid;
         cin>>bp;
         cin.ignore();
         getline(cin,name);
@@ -49,17 +54,33 @@ pememp permaemp[1000],checkingperm[10000];
 
 void show()
 {
+    if(tempcount==0)
+    {
+        cout<<"FIRST ADD EMPLOYEE\n\n";
+        return;
+    }
+    else{
+        cout<<"DISPLAYING TEMPORARY EMPLOYEE DETAILS\n";
     for(int i=0;i<tempcount;i++)
     {
         cout<<"NAME:\t"<<temply[i].name<<"\t"<<"EMPLOYEE ID\t"<<temply[i].emid<<"\t"<<"SALARY\t"<<temply[i].bp<<endl;
+    }
     }
 }
 
 void showperma()
 {
+    if(permcount==0)
+    {
+        cout<<"FIRST ADD EMPLOYEE\n\n";
+        return;
+    }
+    else{
+        cout<<"DISPLAYING PERMANENT EMPLOYEE DETAILS\n";
     for(int i=0;i<permcount;i++)
     {
         cout<<"NAME:\t"<<permaemp[i].name<<"\t"<<"EMPLOYEE ID\t"<<permaemp[i].emid<<"\t"<<"SALARY\t"<<permaemp[i].bp<<"\n";
+    }
     }
 }
 //______________________checking for permanent employee id______________________
@@ -67,11 +88,13 @@ bool check_permaid(int input_emid)
 {
     for(int i=0;i<permcount;i++)
     {
-        if(checkingperm[i].id==input_emid)
+        if(permarr[i]==input_emid)
         {
+            permcount--;
             return false;
         }
     }
+    permarr[ipm++]=input_emid;
     return true;
 }
 //___________checking for temporary employee id__________
@@ -79,11 +102,13 @@ bool check_tempaid(int input_emid)
 {
     for(int i=0;i<tempcount;i++)
     {
-        if(checkingtemp[i].emid==input_emid)
+        if(temparr[i]==input_emid)
         {
+            tempcount--;
             return false;
         }
     }
+    temparr[itm++]=input_emid;
     return true;
 }
 //______________________________________MAIN PART__________________________
@@ -95,7 +120,7 @@ int main()
 {
     while(1)
     {
-        cout<<"ENTER YOUR CHOICE\n1 TO ADD EMPLOYEE\n2 TO SHOW TEMPORARY EMPLOYEE DETAILS\n3 TO ADD PERMANENT EMPLOYEE\n4 TO SHOW PERMANENT EMPLOYEE DETAILS\n";
+        cout<<"ENTER YOUR CHOICE\n1 TO ADD TEMPORARY EMPLOYEE\n2 TO SHOW TEMPORARY EMPLOYEE DETAILS\n3 TO ADD PERMANENT EMPLOYEE\n4 TO SHOW PERMANENT EMPLOYEE DETAILS\n";
         cout<<"0 TO EXIT\n";
         int ch;
         cin>>ch;
@@ -120,7 +145,7 @@ int main()
             l++;
             break;
             case 2:
-            cout<<"DISPLAYING TEMPORARY EMPLOYEE DETAILS\n";
+            
             show();
             break;
             case 3:
@@ -138,7 +163,7 @@ int main()
             k++;
             break;
             case 4:
-            cout<<"DISPLAYING PERMANENT EMPLOYEE DETAILS\n";
+            
                 showperma();
                 break;
         }
