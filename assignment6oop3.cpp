@@ -102,7 +102,8 @@ int main()
     while(1)
     {
         int ch;
-        cout<<"ENTER YOUR CHOICE\n";
+        cout<<"ENTER YOUR CHOICE\n1 THE SIZE OF TWO ARRAY\n2 TAKING ARRAY ELEMENTS OF 1ST ARRAY\n3 MAXIMUM ARRAY ELEMENTS OF 1ST ARRAY\n";
+        cout<<"4 TAKING ARRAY ELEMENTS OF 2ND ARRAY\n5 MAXIMUM ARRAY ELEMENTS OF 1ST ARRAY\n6 ADDING TWO ARRAY\n7 DISPLAYING THE RESULT IN 1ST ARRAY\n\n";
         cin>>ch;
         switch(ch)
         {
