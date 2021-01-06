@@ -16,7 +16,7 @@ class student{
     }
     void showstudents()
     {
-        cout<<"NAME:\t"<<name<<"\t"<<"ROLL NUMBER:\t"<<roll<<"SCORE:\t"<<score<<"\n";
+        cout<<"NAME:\t"<<name<<"\t"<<"ROLL NUMBER:\t"<<roll<<"\t"<<"SCORE:\t"<<score<<"\n";
     }
 };
 student s[10000];
@@ -26,7 +26,7 @@ int main()
     while(1)
     {
         int ch;
-        cout<<"ENTER YOUR CHOICE\n";
+        cout<<"ENTER YOUR CHOICE\n1 NUMBER OF STUDENTS\n2 TAKING DETAILS OF THE STUDENT\n3 DISPLAYING DETAILS OF STUDENT\nINDEX ON WHICH YOU WANT TO SEE STUDENT's DETAILS\n";
         cin>>ch;
         switch(ch)
         {
@@ -46,7 +46,7 @@ int main()
             }
             break;
             case 3:
-            cout<<"DETAILS OF"<<i<<"STUDENTS"<<"\n";
+            cout<<"DETAILS OF STUDENTS"<<"\n";
             for(int j=0;j<i;j++)
             {
                 s[j].showstudents();
