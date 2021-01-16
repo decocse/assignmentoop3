@@ -1,4 +1,5 @@
-#include<iostream>
+#include<bits/stdc++.h>
+
 #include<string>
 #include<vector>
 #include<iterator> 
@@ -23,51 +24,33 @@ public:
     {
         return name;
     }
-
+    int getroll()
+    {
+        return roll;
+    }
+    int getscore()
+    {
+        return score;
+    }
     void printdata()
     {
         cout << "NAME:\t" << name << "\tROLL\t" << roll << "\tSCORE\t" << score << "\t\n";
     }
     friend ostream& operator<<(ostream& o, student& s);
-    // friend student operatorqsort(student& s1, student& s2);
-    friend bool operator>(student& s1, student& s2);
-    friend bool operator<(student& s1, student& s2);
+   
 };
 ostream& operator<<(ostream& o, student& s)
 {
     o << s.name << "\t" << s.roll << "\t" << s.score << "\n";
     return o;
 }
-bool operator>(student& s1, student& s2)
-{
-    if (s1 > s2)
-    {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-bool operator<(student& s1, student& s2)
-{
-    if (s1 < s2)
-    {
-        return true;
-    }
-}
-bool sort(student& s1, student& s2)
-{
-    if (s1 < s2)
-    {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
+
+ 
+//main part************************************************
 int main()
 {
     vector<student>s;
+   
     student s1[200000];
     student k;
     int max = 0;
@@ -153,15 +136,14 @@ int main()
         }
         case 8:
         {
-            cout << "lets sort\n";
-            for (int i = 0; i < n; i++)
+            cout << "sorted\n";
+            sort( s.begin( ), s.end( ), [ ]( const student& lhs, const student& rhs )
             {
-                if (s1[i] > s1[i + 1])
-                {
-                    sort(s[i], s1[i + 1]);
-                }
-            }
+            return lhs.roll > rhs.roll;
+                });
+            break;
         }
-        }
+       
     }
+}
 }
