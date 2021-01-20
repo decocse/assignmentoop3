@@ -1,149 +1,217 @@
 #include<bits/stdc++.h>
-
 #include<string>
 #include<vector>
 #include<iterator> 
 using namespace std;
-int see[1000];
-int d = 0;
-class student {
-public:
+
+class student{
+    public:
     int roll;
     int score;
     string name;
-    void takedata()
+     student()
     {
-        cout << "ENTER STUDENT ROLL SCORE AND NAME\n";
-        cin >> roll;
-        cin >> score;
-        see[d++] = score;
+        cout<<"ENTER STUDENT ROLL SCORE AND NAME\n";
+        cin>>roll;
+        cin>>score;
+        
         cin.ignore();
-        getline(cin, name);
+        getline(cin,name);
     }
-    string getname()
+      string getname()
     {
         return name;
-    }
-    int getroll()
-    {
-        return roll;
     }
     int getscore()
     {
         return score;
     }
+    int getroll()
+    {
+        return roll;
+    }
+   
     void printdata()
     {
-        cout << "NAME:\t" << name << "\tROLL\t" << roll << "\tSCORE\t" << score << "\t\n";
+        cout<<"NAME:\t"<<name<<"\tROLL\t"<<roll<<"\tSCORE\t"<<score<<"\t\n";
     }
-    friend ostream& operator<<(ostream& o, student& s);
+   friend ostream& operator<<(ostream&o,student&s);
+
    
 };
-ostream& operator<<(ostream& o, student& s)
-{
-    o << s.name << "\t" << s.roll << "\t" << s.score << "\n";
+ ostream& operator<<(ostream&o,student&s)
+ {
+    o<<s.name<<"\t"<<s.roll<<"\t"<<s.score<<"\n";
     return o;
 }
+void searchit(vector<student> s)
+{
+                cout<<"enter the substring you want to find\n";
+                string p,search;
+                cin.ignore();
+                getline(cin,p);
+                for(auto i=s.begin();i!=s.end();i++)
+                {
+                    search=i->getname();
+                    size_t find =search.find(p);
+                    if(find!=string::npos)
+                    {
+                        i->printdata();
+                        break;
+                    }
+                }
+                
+                
+}  
+bool check(string s1,string s2)
+{
+    int n=s1.length();
+    int m=s2.length();
+    for(int i=0;i<m;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            if(s1[j]==s2[j])
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+                
+void notstring(vector<student>s)
+{
 
- 
-//main part************************************************
+    cout<<"enter the substring you want to find\n";
+                
+    string p,search;
+    cin.ignore();
+    getline(cin,p);
+    for(auto i=s.begin();i!=s.end();i++)
+    {
+        if(!check(p,i->getname()))
+        {
+            i->printdata();
+            break;
+        }
+    }
+
+}
+void highsc(vector<student>s)
+{
+    int max=0;
+    vector<student>s2;
+    for(auto i=s.begin();i!=s.end();i++)
+    {
+        if(max<i->getscore())
+        {
+            max=i->getscore();
+        }
+    }
+      for(auto it=s.begin();it!=s.end();it++)
+      {
+          if(it->getscore()==max)
+          {
+              it->printdata();
+          }
+      }
+}
+
+
 int main()
 {
     vector<student>s;
    
-    student s1[200000];
-    student k;
-    int max = 0;
-    int n;
-    while (1)
+    int count=0;
+    while(1)
     {
-        cout << "ENTER YOUR CHOICE\n";
         int ch;
-        cin >> ch;
-        switch (ch)
+        cout<<"enter your choice\n";
+        cin>>ch;
+        switch(ch)
         {
+            case 1: 
+            {
+                cout<<"add student\n";
+                //s2[count++].takedata();
+                s.push_back(student());
 
-        case 1: {
-            cout << "enter the size you want for student\n";
-            //int n;
-            cin >> n;
-
-            cout << "recorded\n";
-            break;
-        }
-        case 2: {
-            for (int i = 0; i < n; i++)
-            {
-                s1[i].takedata();
-                s.push_back(s1[i]);
+                break;
             }
-            break;
-        }
-        case 3: {
-            cout << "showing the data\n";
-            vector<student>::iterator it;
-            for (it = s.begin(); it < s.end(); it++)
+            case 2:
             {
-                cout << *it;
-                // s1[i].printdata();
+                cout<<"access the element by giving the index\n";
+                int i;
+                cin>>i;
+                s[i].printdata();
+                break;
             }
-            break;
-        }
-        case 4: {
-            cout << "size checking\n";
-            int si = s.size();
-            cout << si << "\n";
-            break;
-        }
-        case 5: {
-            cout << "removing the last enter data\n";
-            s.pop_back();
-            break;
-        }
-        case 6: {
-            cout << "highest score details\n";
-            for (int i = 0; i < n; i++)
+            case 3:
             {
-                if (max < see[i])
+              
+                searchit(s);
+                break;
+            }
+            case 4:
+            {
+                notstring(s);
+                break;
+            }
+            case 5:
+            {
+                cout<<"higest score\n";
+                highsc(s);
+                break;
+            }
+            case 6:
+            {
+                
+                for(auto it=s.begin();it!=s.end();it++)
                 {
-                    max = see[i];
-                    k = s1[i];
+                    it->printdata();
                 }
+                break;
             }
-            k.printdata();
-            break;
-        }
-        case 7:
-        {
-            string p;
-            string search;
-            cout << "enter the substring you want to search\n";
-            cin.ignore();
-            getline(cin, p);
-            student substng;
-            for (int i = 0; i < n; i++)
+            case 7:
             {
-                search = s1[i].getname();
-                size_t find = search.find(p);
-                if (find != string::npos)
-                {
-                    substng = s1[i];
-                    break;
-                }
+                cout<<"removing the data\n\n";
+                s.pop_back();
+                break;
             }
-            substng.printdata();
-            break;
-        }
-        case 8:
-        {
-            cout << "sorted\n";
+            case 8:
+            {
+                cout << "sorted\n";
             sort( s.begin( ), s.end( ), [ ]( const student& lhs, const student& rhs )
             {
             return lhs.roll > rhs.roll;
                 });
             break;
+            }
+            case 9:
+            {
+               
+                cout<<"enter the roll\n";
+                int roll;
+                cin>>roll;
+                for(auto it=s.begin();it!=s.end();it++)
+                {
+                  if(roll==it->getroll())
+                 {
+                    s.erase(it);
+                    break;
+                  }
+                }
+                //cout<<"no such roll exist\n\n";
+                break;
+            }
+            case 0:
+            {
+                 cout<<"thankyou\n\n";
+                exit(0);
+               
+            }
         }
-       
+
     }
-}
 }
