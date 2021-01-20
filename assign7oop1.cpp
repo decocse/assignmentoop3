@@ -3,8 +3,7 @@
 #include<vector>
 #include<iterator> 
 using namespace std;
-int see[1000];
-int d=0;
+
 class student{
     public:
     int roll;
