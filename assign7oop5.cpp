@@ -50,13 +50,10 @@ ostream& operator<<(ostream& o, student& s)
 //main part************************************************
 int main()
 {
-    vector<student>s;
-   queue<student>qs;
-   //student sp;
+    
+   
     student s1[200000];
     map<int ,int>sp;
-    student k;
-    int max = 0;
     int n;
     while (1)
     {
@@ -76,79 +73,15 @@ int main()
             break;
         }
         case 2: {
-            for (int i = 0; i < n; i++)
-            {
+            for(int i=0;i<n;i++){
                 s1[i].takedata();
-                s.push_back(s1[i]);
+                //s.push_back(s1[i]);
                 sp.insert(pair<int,int>(s1[i].getroll(),s1[i].getscore()));
             }
             break;
         }
-        case 3: {
-            cout << "showing the data\n";
-            vector<student>::iterator it;
-            for (it = s.begin(); it < s.end(); it++)
-            {
-                cout << *it;
-                // s1[i].printdata();
-            }
-            break;
-        }
-        case 4: {
-            cout << "size checking\n";
-            int si = s.size();
-            cout << si << "\n";
-            break;
-        }
-        case 5: {
-            cout << "removing the last enter data\n";
-            s.pop_back();
-            break;
-        }
-        case 6: {
-            cout << "highest score details\n";
-            for (int i = 0; i < n; i++)
-            {
-                if (max < see[i])
-                {
-                    max = see[i];
-                    k = s1[i];
-                }
-            }
-            k.printdata();
-            break;
-        }
-        case 7:
-        {
-            string p;
-            string search;
-            cout << "enter the substring you want to search\n";
-            cin.ignore();
-            getline(cin, p);
-            student substng;
-            for (int i = 0; i < n; i++)
-            {
-                search = s1[i].getname();
-                size_t find = search.find(p);
-                if (find != string::npos)
-                {
-                    substng = s1[i];
-                    break;
-                }
-            }
-            substng.printdata();
-            break;
-        }
-        case 8:
-        {
-            cout << "sorted\n";
-            sort( s.begin( ), s.end( ), [ ]( const student& lhs, const student& rhs )
-            {
-            return lhs.roll > rhs.roll;
-                });
-            break;
-        }
-     case 9:
+        
+     case 3:
      {
          cout<<"enter roll no. to be searched\n";
          int rllno;
@@ -161,6 +94,16 @@ int main()
          }
          if(flag=0){
          cout<<"no roll is present\n";}
+         break;
+     }
+     case 4:
+     {
+         cout<<"displaying data\n";
+         for(int i=0;i<n;i++)
+         {
+             s1[i].printdata();
+             
+         }
          break;
      }
        
